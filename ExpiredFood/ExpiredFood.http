@@ -1,1 +1,26 @@
+#Get the list of categories
 GET http://localhost:5084/categories
+###
+
+#Get an specific category
+GET http://localhost:5084/categories/1
+###
+
+POST http://localhost:5084/categories
+Content-Type: application/json
+
+{
+    "Name": "Vegetal Milk"
+}
+
+###
+PUT http://localhost:5084/categories/3
+Content-Type: application/json
+
+{
+    "Name": "Lechecita"
+}
+
+###
+DELETE http://localhost:5084/categories/3
+Content-Type: application/json
