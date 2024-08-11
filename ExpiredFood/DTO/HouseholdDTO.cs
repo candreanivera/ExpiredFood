@@ -2,7 +2,9 @@ namespace ExpiredFood.DTO;
 
 public record class HouseholdDTO
 (
-    int Id_Category,
-    string Name
+    int Houseld_Id,
+    string Name,
+    int Amt_people,
+    string Address
 );
 

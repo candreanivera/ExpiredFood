@@ -2,6 +2,6 @@ namespace ExpiredFood.DTO;
 
 public record class CategoryDTO
 (
-    int Id_Category,
+    int Category_Id,
     string Name
 );

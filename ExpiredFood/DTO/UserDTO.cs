@@ -2,7 +2,7 @@ namespace ExpiredFood.DTO;
 
 public record class UserDTO
 (
-int Id_User,
+int User_Id,
 string Name,
 string Last_Name,
 string Address,
