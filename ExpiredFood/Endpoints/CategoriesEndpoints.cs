@@ -14,14 +14,14 @@ public static class CategoriesEndpoints
 //This methods extends from WebApplication and returns RouteGroupBuilder
 public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
 {
-    var group = app.MapGroup("/categories");
+    var group = app.MapGroup("/categories").WithParameterValidation();
 
     //Endpoint to list all the Categories
     group.MapGet("", () => categories);
 
     //Endpoint to list an specific Category
     group.MapGet("/{id}", (int id) => categories.Find(x => x.Category_Id == id)).
-    WithName("GetCategoryById");
+    WithName("GetCategoryById").WithParameterValidation();
 
     //Endpoint to insert a new Category
     group.MapPost("", (CreateCategoryDTO newcategory) => {
@@ -29,10 +29,11 @@ public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
             categories.Count + 1,
             newcategory.Name
         );
+
         categories.Add(category);
 
         return Results.CreatedAtRoute("GetCategoryById", new { id = category.Category_Id }, category);
-    });
+    }).WithParameterValidation();
 
 
     group.MapPut("/{id}", (int id, UpdateCategoryDTO category) => {

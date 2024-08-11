@@ -1,6 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ExpiredFood.DTO;
 
 public record class CreateCategoryDTO(
-    int Category_Id,
-    string Name
+    [Required][MaxLength(50)] string Name
 );
