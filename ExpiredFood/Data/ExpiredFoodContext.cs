@@ -6,16 +6,25 @@ using Microsoft.EntityFrameworkCore;
 namespace ExpiredFood.Data;
 
 //This class inherits from DbContext
-public class ExpiredFoodContext : DbContext
+public class ExpiredFoodContext(DbContextOptions<ExpiredFoodContext> options) : DbContext(options)
 {
-    public DbSet<Category> categories { get; set; }
+    public DbSet<Category> Categories => Set<Category>();
 
-    public DbSet<Food> foods { get; set; }
+    public DbSet<Food> Foods => Set<Food>();
 
-    public DbSet<Transaction> transactions { get; set; }
+    public DbSet<Transaction> Transactions => Set<Transaction>();
 
-    public DbSet<User> users { get; set; }
+    public DbSet<User> Users => Set<User>();
 
-    public DbSet<Household> households { get; set; }
+
+    // protected override void OnModelCreating(ModelBuilder modelBuilder)
+    // {
+    //     modelBuilder.Entity<Category>()
+    //         .HasMany(c => c.Foods)          // Una categoría tiene muchos alimentos
+    //         .WithOne(f => f.Category)       // Un alimento pertenece a una sola categoría
+    //         .HasForeignKey(f => f.CategoryId); // Clave foránea en Food
+
+    //     base.OnModelCreating(modelBuilder);
+    // }
 
 }

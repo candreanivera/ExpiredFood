@@ -1,9 +1,13 @@
-using ExpiredFood.DTO;
+using ExpiredFood.Data;
 using ExpiredFood.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
+//Connection String
+var connectionString = builder.Configuration.GetConnectionString("ExpiredFood");
+builder.Services.AddSqlite<ExpiredFoodContext>(connectionString);
+
+var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 app.MapCategoriesEndpoints();
