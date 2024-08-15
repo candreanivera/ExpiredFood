@@ -20,7 +20,7 @@ public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
     group.MapGet("", () => categories);
 
     //Endpoint to list an specific Category
-    group.MapGet("/{id}", (int id) => categories.Find(x => x.Category_Id == id)).
+    group.MapGet("/{id}", (int id) => categories.Find(x => x.CategoryId == id)).
     WithName("GetCategoryById").WithParameterValidation();
 
     //Endpoint to insert a new Category
@@ -32,12 +32,12 @@ public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
 
         categories.Add(category);
 
-        return Results.CreatedAtRoute("GetCategoryById", new { id = category.Category_Id }, category);
+        return Results.CreatedAtRoute("GetCategoryById", new { id = category.CategoryId }, category);
     }).WithParameterValidation();
 
 
     group.MapPut("/{id}", (int id, UpdateCategoryDTO category) => {
-        var index = categories.FindIndex(x => x.Category_Id == id);
+        var index = categories.FindIndex(x => x.CategoryId == id);
         if (index == -1) {
             return Results.NotFound();
         }
@@ -51,7 +51,7 @@ public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
 
     group.MapDelete("/{id}", (int id) => 
     {
-    categories.RemoveAll(x => x.Category_Id == id);
+    categories.RemoveAll(x => x.CategoryId == id);
     return Results.NoContent();
         
     });
