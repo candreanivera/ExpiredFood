@@ -9,7 +9,7 @@ public class User
     public string ?LastName { get; set; }
     public string ?Address { get; set; }
     public string ?Email { get; set; }
-    int Phone { get; set; } = 0;
+    public int Phone { get; set; } = 0;
     public ICollection<Transaction> ?Transactions { get; set; }
 
 }

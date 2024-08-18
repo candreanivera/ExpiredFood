@@ -3,9 +3,9 @@ namespace ExpiredFood.DTO;
 
 public record class UpdateUserDTO
 (
-    [Required][StringLength(40)] string Name,
-    [Required][StringLength(40)] string Last_Name,
+    [StringLength(40)] string Name,
+    [StringLength(40)] string Last_Name,
     string Address,
-    [Required][StringLength(40)] string Email,
+    [StringLength(40)] string Email,
     int Phone
 );

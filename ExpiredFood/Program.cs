@@ -13,5 +13,6 @@ app.MapGet("/", () => "Hello World!");
 app.MapCategoriesEndpoints();
 app.MapTransactionsEndpoints();
 app.MapFoodsEndpoints();
+app.MapUsersEndpoints();
 
 app.Run();

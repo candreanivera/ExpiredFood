@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpiredFood.Data.Migrations
 {
     [DbContext(typeof(ExpiredFoodContext))]
-    [Migration("20240817025308_InitialCreate")]
+    [Migration("20240818053857_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -146,6 +146,9 @@ namespace ExpiredFood.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Phone")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
@@ -157,7 +160,8 @@ namespace ExpiredFood.Data.Migrations
                             Address = "Que te importa 23, Auckland",
                             Email = "queteimporta@example.com",
                             LastName = "Andreani",
-                            Name = "Cristina"
+                            Name = "Cristina",
+                            Phone = 211234567
                         });
                 });
 

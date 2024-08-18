@@ -35,7 +35,8 @@ namespace ExpiredFood.Data.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Phone = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,8 +108,8 @@ namespace ExpiredFood.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Address", "Email", "LastName", "Name" },
-                values: new object[] { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina" });
+                columns: new[] { "UserId", "Address", "Email", "LastName", "Name", "Phone" },
+                values: new object[] { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina", 211234567 });
 
             migrationBuilder.InsertData(
                 table: "Foods",

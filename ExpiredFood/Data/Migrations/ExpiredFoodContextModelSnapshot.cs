@@ -143,6 +143,9 @@ namespace ExpiredFood.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Phone")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
@@ -154,7 +157,8 @@ namespace ExpiredFood.Data.Migrations
                             Address = "Que te importa 23, Auckland",
                             Email = "queteimporta@example.com",
                             LastName = "Andreani",
-                            Name = "Cristina"
+                            Name = "Cristina",
+                            Phone = 211234567
                         });
                 });
 

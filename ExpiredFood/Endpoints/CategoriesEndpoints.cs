@@ -19,49 +19,45 @@ public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
     var group = app.MapGroup("/categories").WithParameterValidation();
 
     //Endpoint to list all the Categories
-    group.MapGet("", (ExpiredFoodContext dbcontext) => 
-        dbcontext.Categories.Select(category => category.ToDTO()).AsNoTracking()
-    );
+    group.MapGet("", async (ExpiredFoodContext dbcontext) => await
+        dbcontext.Categories.Select(category => category.ToDTO()).AsNoTracking().ToListAsync());
 
     //Endpoint to list an specific Category
-    group.MapGet("/{id}", (int id, ExpiredFoodContext DbContext) => {
-        Category? category = DbContext.Categories.Find(id);
-        return category == null ? Results.NotFound() : Results.Ok(category);
+    group.MapGet("/{id}", async (int id, ExpiredFoodContext DbContext) => {
+        Category? category = await DbContext.Categories.FindAsync(id);
+        return category is null ? Results.NotFound() : Results.Ok(category);
         }
     ).WithName("GetCategoryById");
 
+
     //Endpoint to insert a new Category
-    group.MapPost("", (CreateCategoryDTO newcategory, ExpiredFoodContext DbContext) => {
-
+    group.MapPost("", async (CreateCategoryDTO newcategory, ExpiredFoodContext DbContext) => {
     Category categoryEntity = newcategory.toEntity();
-
     DbContext.Categories.Add(categoryEntity);
-    DbContext.SaveChanges();
-    
-
+    await DbContext.SaveChangesAsync();
     return Results.CreatedAtRoute(GetCategory, new { id = categoryEntity.CategoryId }, categoryEntity);
   
     });
 
 
     //Endpoint to update an existing Category
-    group.MapPut("/{id}", (int id, UpdateCategoryDTO updatedcategory, ExpiredFoodContext DbContext) => {
+    group.MapPut("/{id}", async (int id, UpdateCategoryDTO updatedcategory, ExpiredFoodContext DbContext) => {
         
-        var existingCategory = DbContext.Categories.Find(id);
+        var existingCategory = await DbContext.Categories.FindAsync(id);
         if (existingCategory is null) {
             return Results.NotFound();
         }
        
         DbContext.Entry(existingCategory).CurrentValues.SetValues(updatedcategory);
-        DbContext.SaveChanges();
+        await DbContext.SaveChangesAsync();
 
         return Results.NoContent();
     });
 
     //Endpoint to delete an existing Category
-    group.MapDelete("/{id}", (int id, ExpiredFoodContext DbContext) => 
+    group.MapDelete("/{id}", async (int id, ExpiredFoodContext DbContext) => 
     {
-    DbContext.Categories.Where(Category => Category.CategoryId == id).ExecuteDelete();
+    await DbContext.Categories.Where(Category => Category.CategoryId == id).ExecuteDeleteAsync();
     return Results.NoContent();
         
     });
