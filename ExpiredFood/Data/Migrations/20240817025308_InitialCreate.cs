@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ExpiredFood.Data.Migrations
 {
     /// <inheritdoc />
@@ -29,7 +31,11 @@ namespace ExpiredFood.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    Address = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,11 +69,10 @@ namespace ExpiredFood.Data.Migrations
                 {
                     TransactionId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    User_Id = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     Due_Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FoodId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Timestamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Observations = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -83,8 +88,32 @@ namespace ExpiredFood.Data.Migrations
                         name: "FK_Transactions_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId");
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Fruits" },
+                    { 2, "Breads" },
+                    { 3, "Vegetables" },
+                    { 4, "Milks" },
+                    { 5, "Ice Cream and frozen deserts" },
+                    { 6, "Frozen vegetables" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "Address", "Email", "LastName", "Name" },
+                values: new object[] { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina" });
+
+            migrationBuilder.InsertData(
+                table: "Foods",
+                columns: new[] { "FoodId", "Brand", "CategoryId", "Name" },
+                values: new object[] { 1, "Freya´s", 2, "Pancito" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Foods_CategoryId",

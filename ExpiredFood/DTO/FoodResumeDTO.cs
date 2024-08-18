@@ -1,9 +1,9 @@
 namespace ExpiredFood.DTO;
 
-public record class FoodDTO
+public record class FoodResumeDTO
 (
     int FoodId,
     string Name,
     string Brand,
-    string Category
+    int CategoryId
 );

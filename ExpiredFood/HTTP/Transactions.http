@@ -1,0 +1,34 @@
+#Get the list of transactions
+GET http://localhost:5084/transactions
+###
+
+#Get an specific transactions
+GET http://localhost:5084/transactions/1
+###
+
+//Insert transactions
+POST http://localhost:5084/transactions
+Content-Type: application/json
+
+{
+    "UserID": 1,
+    "Due_date": "2024-08-23",
+    "FoodId": 1,
+    "Timestamp": "2024-08-16",
+    "Observations": "quiero pancito"
+}
+
+###
+PUT http://localhost:5084/transactions/1
+Content-Type: application/json
+
+{
+    "Due_date": "18-08-2024",
+    "FoodId": 1, 
+    "Timestamp": "2024-08-17",
+    "Observations": "Nuevas observaciones"
+}
+
+###
+DELETE http://localhost:5084/transactions/11
+Content-Type: application/json

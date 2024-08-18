@@ -1,57 +1,67 @@
 using System;
+using ExpiredFood.Data;
 using ExpiredFood.DTO;
+using ExpiredFood.Entities;
+using ExpiredFood.Mapping;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpiredFood.Endpoints;
 
 public static class CategoriesEndpoints
 {
-    static List<CategoryDTO> categories = [
-        new(1, "Fruits"),
-        new(2, "Bread"),
-        new(3, "Vegetables")
-    ];
     
+//Definition of a constant
+const string GetCategory = "GetCategoryById";
+
 //This methods extends from WebApplication and returns RouteGroupBuilder
 public static RouteGroupBuilder MapCategoriesEndpoints(this WebApplication app)
 {
     var group = app.MapGroup("/categories").WithParameterValidation();
 
     //Endpoint to list all the Categories
-    group.MapGet("", () => categories);
+    group.MapGet("", (ExpiredFoodContext dbcontext) => 
+        dbcontext.Categories.Select(category => category.ToDTO()).AsNoTracking()
+    );
 
     //Endpoint to list an specific Category
-    group.MapGet("/{id}", (int id) => categories.Find(x => x.CategoryId == id)).
-    WithName("GetCategoryById").WithParameterValidation();
+    group.MapGet("/{id}", (int id, ExpiredFoodContext DbContext) => {
+        Category? category = DbContext.Categories.Find(id);
+        return category == null ? Results.NotFound() : Results.Ok(category);
+        }
+    ).WithName("GetCategoryById");
 
     //Endpoint to insert a new Category
-    group.MapPost("", (CreateCategoryDTO newcategory) => {
-        CategoryDTO category = new(
-            categories.Count + 1,
-            newcategory.Name
-        );
+    group.MapPost("", (CreateCategoryDTO newcategory, ExpiredFoodContext DbContext) => {
 
-        categories.Add(category);
+    Category categoryEntity = newcategory.toEntity();
 
-        return Results.CreatedAtRoute("GetCategoryById", new { id = category.CategoryId }, category);
-    }).WithParameterValidation();
+    DbContext.Categories.Add(categoryEntity);
+    DbContext.SaveChanges();
+    
+
+    return Results.CreatedAtRoute(GetCategory, new { id = categoryEntity.CategoryId }, categoryEntity);
+  
+    });
 
 
-    group.MapPut("/{id}", (int id, UpdateCategoryDTO category) => {
-        var index = categories.FindIndex(x => x.CategoryId == id);
-        if (index == -1) {
+    //Endpoint to update an existing Category
+    group.MapPut("/{id}", (int id, UpdateCategoryDTO updatedcategory, ExpiredFoodContext DbContext) => {
+        
+        var existingCategory = DbContext.Categories.Find(id);
+        if (existingCategory is null) {
             return Results.NotFound();
         }
-
-        categories[index] = new CategoryDTO(
-            id, 
-            category.Name);
+       
+        DbContext.Entry(existingCategory).CurrentValues.SetValues(updatedcategory);
+        DbContext.SaveChanges();
 
         return Results.NoContent();
     });
 
-    group.MapDelete("/{id}", (int id) => 
+    //Endpoint to delete an existing Category
+    group.MapDelete("/{id}", (int id, ExpiredFoodContext DbContext) => 
     {
-    categories.RemoveAll(x => x.CategoryId == id);
+    DbContext.Categories.Where(Category => Category.CategoryId == id).ExecuteDelete();
     return Results.NoContent();
         
     });

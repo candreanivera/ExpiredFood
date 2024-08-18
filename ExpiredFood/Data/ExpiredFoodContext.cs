@@ -16,15 +16,26 @@ public class ExpiredFoodContext(DbContextOptions<ExpiredFoodContext> options) : 
 
     public DbSet<User> Users => Set<User>();
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+       modelBuilder.Entity<Category>().HasData(
+        new {CategoryId = 1, Name = "Fruits"},
+        new {CategoryId = 2, Name = "Breads"},
+        new {CategoryId = 3, Name = "Vegetables"},
+        new {CategoryId = 4, Name = "Milks"},
+        new {CategoryId = 5, Name = "Ice Cream and frozen deserts"},
+        new {CategoryId = 6, Name = "Frozen vegetables"}
+       );
 
-    // protected override void OnModelCreating(ModelBuilder modelBuilder)
-    // {
-    //     modelBuilder.Entity<Category>()
-    //         .HasMany(c => c.Foods)          // Una categoría tiene muchos alimentos
-    //         .WithOne(f => f.Category)       // Un alimento pertenece a una sola categoría
-    //         .HasForeignKey(f => f.CategoryId); // Clave foránea en Food
+       modelBuilder.Entity<User>().HasData(
+        new {UserId = 1, Name = "Cristina", LastName = "Andreani",
+        Address = "Que te importa 23, Auckland", Email = "queteimporta@example.com"}
+       );
 
-    //     base.OnModelCreating(modelBuilder);
-    // }
+       modelBuilder.Entity<Food>().HasData(
+        new {FoodId = 1, Name = "Pancito", Brand = "Freya´s", CategoryId = 2}
+       );
+    }
+
 
 }

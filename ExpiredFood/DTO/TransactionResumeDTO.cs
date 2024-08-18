@@ -1,13 +1,11 @@
 namespace ExpiredFood.DTO;
 
-public record class TransactionDTO
+public record class TransactionResumeDTO
 (
 int TrxId,
 int UserID,
-string UserName,
 DateTime Due_date,
 int FoodId,
-string FoodName,
 DateTime Timestamp,
 string Observations
 );

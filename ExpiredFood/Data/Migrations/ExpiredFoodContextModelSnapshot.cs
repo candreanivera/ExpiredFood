@@ -15,7 +15,7 @@ namespace ExpiredFood.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
             modelBuilder.Entity("ExpiredFood.Entities.Category", b =>
                 {
@@ -30,6 +30,38 @@ namespace ExpiredFood.Data.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "Fruits"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "Breads"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Vegetables"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Name = "Milks"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            Name = "Ice Cream and frozen deserts"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            Name = "Frozen vegetables"
+                        });
                 });
 
             modelBuilder.Entity("ExpiredFood.Entities.Food", b =>
@@ -52,6 +84,15 @@ namespace ExpiredFood.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Foods");
+
+                    b.HasData(
+                        new
+                        {
+                            FoodId = 1,
+                            Brand = "Freya´s",
+                            CategoryId = 2,
+                            Name = "Pancito"
+                        });
                 });
 
             modelBuilder.Entity("ExpiredFood.Entities.Transaction", b =>
@@ -59,6 +100,9 @@ namespace ExpiredFood.Data.Migrations
                     b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Due_Date")
                         .HasColumnType("TEXT");
@@ -69,13 +113,7 @@ namespace ExpiredFood.Data.Migrations
                     b.Property<string>("Observations")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("User_Id")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("TransactionId");
@@ -93,15 +131,37 @@ namespace ExpiredFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            Address = "Que te importa 23, Auckland",
+                            Email = "queteimporta@example.com",
+                            LastName = "Andreani",
+                            Name = "Cristina"
+                        });
                 });
 
             modelBuilder.Entity("ExpiredFood.Entities.Food", b =>
                 {
                     b.HasOne("ExpiredFood.Entities.Category", "Category")
-                        .WithMany("Foods")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -119,16 +179,13 @@ namespace ExpiredFood.Data.Migrations
 
                     b.HasOne("ExpiredFood.Entities.User", "User")
                         .WithMany("Transactions")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Food");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ExpiredFood.Entities.Category", b =>
-                {
-                    b.Navigation("Foods");
                 });
 
             modelBuilder.Entity("ExpiredFood.Entities.Food", b =>
