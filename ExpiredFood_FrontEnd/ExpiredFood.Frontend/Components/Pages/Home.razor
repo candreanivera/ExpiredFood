@@ -1,0 +1,59 @@
+﻿@page "/"
+@using Models
+@using Clients
+
+
+<PageTitle>Transactions</PageTitle>
+
+<h1>Transactions List</h1>
+
+<table class="table table-striped" table-bordered table-hover>
+
+    <thead class="table-dark">
+        <th>ID Transaction</th>
+        <th>ID User</th>
+        <th>User Name</th>
+        <th>Due Date</th>
+        <th>ID Food</th>
+        <th>Food Name</th>
+        <th>Date</th>
+        <th>Observations</th>
+    </thead>
+    <tbody>
+        @* @foreach (var transaction in transactions){
+            <tr>
+                <td>@transaction.TransactionId</td>
+                <td>@transaction.UserId</td>
+                <td>@transaction.UserName</td>
+                <td>@transaction.Due_Date</td>
+                <td>@transaction.FoodId</td>
+                <td>@transaction.FoodName</td>
+                <td>@transaction.Date</td>
+                <td>@transaction.Observations</td>
+            </tr>
+        } *@
+    </tbody>
+</table>
+
+@code{
+    @* private TransactionDetails[] transactions =
+    [
+        new(){
+            TransactionId = 1,
+            UserId = 2,
+            UserName = "Cristina",
+            Due_Date = new DateTime(2024,09,18),  
+            FoodId = 2,
+            FoodName = "Heladito de piña ñam",
+            Date = new DateTime(2024,09,18),
+            Observations = "Test Transaction"
+        }
+    
+    ]; *@
+
+    private TransactionsClient transaction = new();
+    private TransactionDetails[]? transactions;
+
+
+}
+    

@@ -3,7 +3,7 @@ GET http://localhost:5084/transactions
 ###
 
 #Get an specific transactions
-GET http://localhost:5084/transactions/1
+GET http://localhost:5084/transactions/2
 ###
 
 //Insert transactions
@@ -13,7 +13,7 @@ Content-Type: application/json
 {
     "UserID": 2,
     "Due_date": "2024-08-23",
-    "FoodId": 1,
+    "FoodId": 2,
     "Timestamp": "2024-08-16",
     "Observations": "quiero pancito"
 }
