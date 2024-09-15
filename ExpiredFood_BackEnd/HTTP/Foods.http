@@ -3,7 +3,7 @@ GET http://localhost:5084/foods
 ###
 
 #Get an specific transactions
-GET http://localhost:5084/foods/3
+GET http://localhost:5084/foods/1
 ###
 
 //Insert transactions

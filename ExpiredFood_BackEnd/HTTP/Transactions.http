@@ -11,7 +11,7 @@ POST http://localhost:5084/transactions
 Content-Type: application/json
 
 {
-    "UserID": 1,
+    "UserID": 2,
     "Due_date": "2024-08-23",
     "FoodId": 1,
     "Timestamp": "2024-08-16",

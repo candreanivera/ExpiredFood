@@ -42,10 +42,15 @@ public static class TransactionsEndpoints
 
            Transaction transactionentity = newtransaction.ToEntity();    
            dbcontext.Transactions.Add(transactionentity);
+           try{
            await dbcontext.SaveChangesAsync();
 
            return Results.CreatedAtRoute(GetTransaction, new { id = transactionentity.TransactionId }, 
            transactionentity.ToResumeDTO());
+           }
+           catch (Exception){
+               return Results.BadRequest("Errorrrrrr");
+           }
         });
 
         //Endpoint to update a specific Transaction
