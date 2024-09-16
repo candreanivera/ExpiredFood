@@ -11,11 +11,11 @@ POST http://localhost:5084/transactions
 Content-Type: application/json
 
 {
-    "UserID": 2,
-    "Due_date": "2024-08-23",
+    "UserID": 3,
+    "Due_date": "2024-09-18",
     "FoodId": 2,
-    "Timestamp": "2024-08-16",
-    "Observations": "quiero pancito"
+    "Timestamp": "2024-09-16",
+    "Observations": "Paltas"
 }
 
 ###

@@ -64,6 +64,7 @@ public static class TransactionsEndpoints
            existingTransaction.ToResumeDTO());
         });
 
+
         //Endpoint to delete a specific Transaction
         group.MapDelete("/{id}", async (ExpiredFoodContext dbcontext, int id) => {
             await dbcontext.Transactions.Where(t => t.TransactionId == id).ExecuteDeleteAsync();

@@ -1,3 +1,4 @@
+using ExpiredFood.Frontend.Clients;
 using ExpiredFood.Frontend.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents();
 
 var ExpiredFoodApiUrl = "http://localhost:5084";
+
+builder.Services.AddHttpClient<TransactionsClient>(
+    client => client.BaseAddress = new Uri(ExpiredFoodApiUrl));
 
 var app = builder.Build();
 

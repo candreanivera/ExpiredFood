@@ -1,39 +1,45 @@
 ﻿@page "/"
 @using Models
 @using Clients
+@inject TransactionsClient TransactionsClientInjected
 
 
 <PageTitle>Transactions</PageTitle>
 
 <h1>Transactions List</h1>
 
-<table class="table table-striped" table-bordered table-hover>
-
-    <thead class="table-dark">
-        <th>ID Transaction</th>
-        <th>ID User</th>
-        <th>User Name</th>
-        <th>Due Date</th>
-        <th>ID Food</th>
-        <th>Food Name</th>
-        <th>Date</th>
-        <th>Observations</th>
-    </thead>
-    <tbody>
-        @* @foreach (var transaction in transactions){
-            <tr>
-                <td>@transaction.TransactionId</td>
-                <td>@transaction.UserId</td>
-                <td>@transaction.UserName</td>
-                <td>@transaction.Due_Date</td>
-                <td>@transaction.FoodId</td>
-                <td>@transaction.FoodName</td>
-                <td>@transaction.Date</td>
-                <td>@transaction.Observations</td>
-            </tr>
-        } *@
-    </tbody>
-</table>
+@if(transactions is null){
+    <p>Loading Transactions...</p>
+}
+else
+{
+    <table class="table table-striped" table-bordered table-hover>
+        <thead class="table-dark">
+            <th>ID Transaction</th>
+            <th>ID User</th>
+            <th>User Name</th>
+            <th>Due Date</th>
+            <th>ID Food</th>
+            <th>Food Name</th>
+            <th>Date</th>
+            <th>Observations</th>
+        </thead>
+        <tbody>
+             @foreach (var transaction in transactions){
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.UserId</td>
+                    <td>@transaction.UserName</td>
+                    <td>@transaction.Due_Date</td>
+                    <td>@transaction.FoodId</td>
+                    <td>@transaction.FoodName</td>
+                    <td>@transaction.Date</td>
+                    <td>@transaction.Observations</td>
+                </tr>
+                } 
+        </tbody>
+    </table>
+}
 
 @code{
     @* private TransactionDetails[] transactions =
@@ -51,9 +57,15 @@
     
     ]; *@
 
-    private TransactionsClient transaction = new();
+   // private TransactionsClient client = new();
+
+    //List of transactions
     private TransactionDetails[]? transactions;
 
+    //Populating class client
+    protected override async Task OnInitializedAsync(){
+        transactions = await TransactionsClientInjected.GetTransactionsAsync();
+    }
 
 }
     
