@@ -8,8 +8,8 @@ public class Transaction
     public int UserId { get; set; }
     public User ?User{ get; set; }
     public DateTime Due_Date { get; set; }    
-    public int FoodId { get; set; }
-    public Food ?Food { get; set; }
+    public int CategoryId { get; set; }
+    public Category ?Category { get; set; }
     public DateTime Date { get; set; }
     public string ?Observations { get; set; }
 }

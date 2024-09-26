@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace ExpiredFood.Data.Migrations
+namespace ExpiredFood_BackEnd.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -72,19 +72,25 @@ namespace ExpiredFood.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     Due_Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FoodId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Observations = table.Column<string>(type: "TEXT", nullable: true)
+                    Observations = table.Column<string>(type: "TEXT", nullable: true),
+                    FoodId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transactions", x => x.TransactionId);
                     table.ForeignKey(
+                        name: "FK_Transactions_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Transactions_Foods_FoodId",
                         column: x => x.FoodId,
                         principalTable: "Foods",
-                        principalColumn: "FoodId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "FoodId");
                     table.ForeignKey(
                         name: "FK_Transactions_Users_UserId",
                         column: x => x.UserId,
@@ -101,7 +107,7 @@ namespace ExpiredFood.Data.Migrations
                     { 1, "Fruits" },
                     { 2, "Breads" },
                     { 3, "Vegetables" },
-                    { 4, "Milks" },
+                    { 4, "Dairy products" },
                     { 5, "Ice Cream and frozen deserts" },
                     { 6, "Frozen vegetables" }
                 });
@@ -111,14 +117,14 @@ namespace ExpiredFood.Data.Migrations
                 columns: new[] { "UserId", "Address", "Email", "LastName", "Name", "Phone" },
                 values: new object[] { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina", 211234567 });
 
-            migrationBuilder.InsertData(
-                table: "Foods",
-                columns: new[] { "FoodId", "Brand", "CategoryId", "Name" },
-                values: new object[] { 1, "Freya´s", 2, "Pancito" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Foods_CategoryId",
                 table: "Foods",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CategoryId",
+                table: "Transactions",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(

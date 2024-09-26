@@ -18,9 +18,9 @@ public static class TransactionsEndpoints
         var group = app.MapGroup("/transactions").WithParameterValidation();
 
         //Endpoint to list all the Transactions
-        group.MapGet("", async (ExpiredFoodContext dbcontext) => await
+        group.MapGet("", async (ExpiredFoodContext dbcontext, int page = 1, int pageSize = 10) => await
          dbcontext.Transactions.Include(transaction => transaction.User)
-        .Include(transaction => transaction.Food)
+        .Include(transaction => transaction.Category)
         .Select(Transaction => Transaction.ToDTO())
         .AsNoTracking()
         .ToListAsync()
@@ -29,7 +29,7 @@ public static class TransactionsEndpoints
         //Endpoint to show an especific transaction
         group.MapGet("/{id}", async (ExpiredFoodContext dbcontext, int id) => {
             Transaction? transaction = await dbcontext.Transactions.Include(t => t.User)
-            .Include(t => t.Food)
+            .Include(t => t.Category)
             .SingleOrDefaultAsync(t => t.TransactionId == id);
 
             return transaction == null ? Results.NotFound() : Results.Ok(transaction.ToDTO());

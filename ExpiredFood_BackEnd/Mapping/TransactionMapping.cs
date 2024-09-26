@@ -12,8 +12,8 @@ public static class TransactionMapping
         newTransactiondb.UserId,
         newTransactiondb.User!.Name!,
         newTransactiondb.Due_Date,
-        newTransactiondb.FoodId,
-        newTransactiondb.Food!.Name!,
+        newTransactiondb.CategoryId,
+        newTransactiondb.Category!.Name!,
         newTransactiondb.Date,
         newTransactiondb.Observations!
         );
@@ -23,7 +23,7 @@ public static class TransactionMapping
         return new Transaction(){
            UserId = newTransactionDTO.UserID,
            Due_Date = newTransactionDTO.Due_date,
-           FoodId = newTransactionDTO.FoodId,
+           CategoryId = newTransactionDTO.CategoryId,
            Date = newTransactionDTO.Timestamp,
            Observations = newTransactionDTO.Observations
           };
@@ -34,7 +34,7 @@ public static class TransactionMapping
         newTransactiondb.TransactionId,    
         newTransactiondb.UserId,
         newTransactiondb.Due_Date,
-        newTransactiondb.FoodId,
+        newTransactiondb.CategoryId,
         newTransactiondb.Date,
         newTransactiondb.Observations!
         );

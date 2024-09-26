@@ -11,6 +11,12 @@ var ExpiredFoodApiUrl = "http://localhost:5084";
 builder.Services.AddHttpClient<TransactionsClient>(
     client => client.BaseAddress = new Uri(ExpiredFoodApiUrl));
 
+builder.Services.AddHttpClient<UsersClient>(
+    client => client.BaseAddress = new Uri(ExpiredFoodApiUrl));
+
+builder.Services.AddHttpClient<CategoriesClient>(
+    client => client.BaseAddress = new Uri(ExpiredFoodApiUrl));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

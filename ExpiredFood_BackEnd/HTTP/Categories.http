@@ -10,17 +10,17 @@ POST http://localhost:5084/categories
 Content-Type: application/json
 
 {
-    "Name": "Pancitos"
+    "Name": "Chocolates"
 }
 
 ###
-PUT http://localhost:5084/categories/8
+PUT http://localhost:5084/categories/6
 Content-Type: application/json
 
 {
-    "Name": "Lechecita"
+    "Name": "Vegetales Congelados"
 }
 
 ###
-DELETE http://localhost:5084/categories/2
+DELETE http://localhost:5084/categories/7
 Content-Type: application/json

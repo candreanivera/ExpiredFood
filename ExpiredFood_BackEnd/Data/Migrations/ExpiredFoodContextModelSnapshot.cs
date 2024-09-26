@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ExpiredFood.Data.Migrations
+namespace ExpiredFood_BackEnd.Data.Migrations
 {
     [DbContext(typeof(ExpiredFoodContext))]
     partial class ExpiredFoodContextModelSnapshot : ModelSnapshot
@@ -50,7 +50,7 @@ namespace ExpiredFood.Data.Migrations
                         new
                         {
                             CategoryId = 4,
-                            Name = "Milks"
+                            Name = "Dairy products"
                         },
                         new
                         {
@@ -84,15 +84,6 @@ namespace ExpiredFood.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            FoodId = 1,
-                            Brand = "Freya´s",
-                            CategoryId = 2,
-                            Name = "Pancito"
-                        });
                 });
 
             modelBuilder.Entity("ExpiredFood.Entities.Transaction", b =>
@@ -101,13 +92,16 @@ namespace ExpiredFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Due_Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("FoodId")
+                    b.Property<int?>("FoodId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Observations")
@@ -117,6 +111,8 @@ namespace ExpiredFood.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("TransactionId");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("FoodId");
 
@@ -175,11 +171,15 @@ namespace ExpiredFood.Data.Migrations
 
             modelBuilder.Entity("ExpiredFood.Entities.Transaction", b =>
                 {
-                    b.HasOne("ExpiredFood.Entities.Food", "Food")
-                        .WithMany("Transactions")
-                        .HasForeignKey("FoodId")
+                    b.HasOne("ExpiredFood.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ExpiredFood.Entities.Food", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("FoodId");
 
                     b.HasOne("ExpiredFood.Entities.User", "User")
                         .WithMany("Transactions")
@@ -187,7 +187,7 @@ namespace ExpiredFood.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Food");
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });

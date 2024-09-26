@@ -6,8 +6,8 @@ int TrxId,
 int UserID,
 string UserName,
 DateTime Due_date,
-int FoodId,
-string FoodName,
+int CategoryId,
+string CategoryName,
 DateTime Timestamp,
 string Observations
 );

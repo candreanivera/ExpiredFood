@@ -22,7 +22,7 @@ public class ExpiredFoodContext(DbContextOptions<ExpiredFoodContext> options) : 
         new {CategoryId = 1, Name = "Fruits"},
         new {CategoryId = 2, Name = "Breads"},
         new {CategoryId = 3, Name = "Vegetables"},
-        new {CategoryId = 4, Name = "Milks"},
+        new {CategoryId = 4, Name = "Dairy products"},
         new {CategoryId = 5, Name = "Ice Cream and frozen deserts"},
         new {CategoryId = 6, Name = "Frozen vegetables"}
        );
@@ -31,10 +31,6 @@ public class ExpiredFoodContext(DbContextOptions<ExpiredFoodContext> options) : 
         new {UserId = 1, Name = "Cristina", LastName = "Andreani",
         Address = "Que te importa 23, Auckland", Email = "queteimporta@example.com",
         Phone = 0211234567}
-       );
-
-       modelBuilder.Entity<Food>().HasData(
-        new {FoodId = 1, Name = "Pancito", Brand = "Freya´s", CategoryId = 2}
        );
     }
 

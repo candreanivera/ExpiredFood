@@ -26,8 +26,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Expired_Food/ExpiredFood_FrontEnd/ExpiredFood.Frontend/Components/Pages/CreateGame.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVHYW1lLnJhem9y
+[C:/Expired_Food/ExpiredFood_FrontEnd/ExpiredFood.Frontend/Components/Pages/CreateTransaction.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVUcmFuc2FjdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Expired_Food/ExpiredFood_FrontEnd/ExpiredFood.Frontend/Components/Pages/Error.razor]

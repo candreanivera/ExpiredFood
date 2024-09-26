@@ -5,7 +5,7 @@ public record class CreateTransactionDTO
 (
    [Required] int UserID,
    [Required] DateTime Due_date,
-    int FoodId,
+    int CategoryId,
     DateTime Timestamp,
    [StringLength(50)] string Observations
 );
