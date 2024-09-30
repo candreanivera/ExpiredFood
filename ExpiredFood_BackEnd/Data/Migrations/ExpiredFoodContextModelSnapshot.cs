@@ -155,6 +155,15 @@ namespace ExpiredFood_BackEnd.Data.Migrations
                             LastName = "Andreani",
                             Name = "Cristina",
                             Phone = 211234567
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Address = "Que te importa 23, Auckland",
+                            Email = "queteimporta@example.com",
+                            LastName = "Graham",
+                            Name = "Mathew",
+                            Phone = 211234567
                         });
                 });
 

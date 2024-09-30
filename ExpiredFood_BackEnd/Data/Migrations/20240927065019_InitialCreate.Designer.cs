@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpiredFood_BackEnd.Data.Migrations
 {
     [DbContext(typeof(ExpiredFoodContext))]
-    [Migration("20240923091544_InitialCreate")]
+    [Migration("20240927065019_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -157,6 +157,15 @@ namespace ExpiredFood_BackEnd.Data.Migrations
                             Email = "queteimporta@example.com",
                             LastName = "Andreani",
                             Name = "Cristina",
+                            Phone = 211234567
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Address = "Que te importa 23, Auckland",
+                            Email = "queteimporta@example.com",
+                            LastName = "Graham",
+                            Name = "Mathew",
                             Phone = 211234567
                         });
                 });

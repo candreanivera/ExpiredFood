@@ -18,7 +18,7 @@ public static class TransactionsEndpoints
         var group = app.MapGroup("/transactions").WithParameterValidation();
 
         //Endpoint to list all the Transactions
-        group.MapGet("", async (ExpiredFoodContext dbcontext, int page = 1, int pageSize = 10) => await
+        group.MapGet("", async (ExpiredFoodContext dbcontext) => await
          dbcontext.Transactions.Include(transaction => transaction.User)
         .Include(transaction => transaction.Category)
         .Select(Transaction => Transaction.ToDTO())

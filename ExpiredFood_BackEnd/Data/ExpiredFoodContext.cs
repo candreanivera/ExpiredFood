@@ -32,6 +32,12 @@ public class ExpiredFoodContext(DbContextOptions<ExpiredFoodContext> options) : 
         Address = "Que te importa 23, Auckland", Email = "queteimporta@example.com",
         Phone = 0211234567}
        );
+
+       modelBuilder.Entity<User>().HasData(
+        new {UserId = 2, Name = "Mathew", LastName = "Graham",
+        Address = "Que te importa 23, Auckland", Email = "queteimporta@example.com",
+        Phone = 0211234567}
+       );
     }
 
 

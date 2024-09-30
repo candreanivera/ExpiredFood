@@ -1,15 +1,15 @@
 ﻿@page "/"
-@using Models
-@using Clients
+@* @using Models
+@using Clients *@
 @inject TransactionsClient TransactionsClientInjected
-
+@attribute [StreamRendering]
 
 <PageTitle>Transactions</PageTitle>
 
 <h1>Transactions List</h1>
 
 <div class="mt-2 mb-3">
-    <a class="btn btn-primary" role="button" href="/createtransaction">New Transaction</a>
+    <a class="btn btn-primary" role="button" href="/editTransaction">New Transaction</a>
 </div>
 
 @if(transactions is null){
@@ -27,6 +27,8 @@ else
             <th>Category Name</th>
             <th>Date</th>
             <th>Observations</th>
+            <th></th>
+            <th></th>
         </thead>
         <tbody>
              @foreach (var transaction in transactions){
@@ -34,11 +36,23 @@ else
                     <td>@transaction.TrxId</td>
                     @* <td>@transaction.UserId</td> *@
                     <td>@transaction.UserName</td>
-                    <td>@transaction.Due_Date</td>
+                    <td>@transaction.Due_Date.ToString("dd-MM-yyyy")</td>
                     @* <td>@transaction.CategoryId</td> *@
                     <td>@transaction.CategoryName</td>
-                    <td>@transaction.Date</td>
+                    <td>@transaction.Timestamp.ToString("dd-MM-yyyy")</td>
                     <td>@transaction.Observations</td>
+                    <td>
+                        <div class="d-flex">
+                            <a class="btn btn-primary me-2" role="button" href="@TransactionUrl(transaction.TrxId)">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <button class="btn btn-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="">
+                                    <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </td>
                 </tr>
                 } 
         </tbody>
@@ -53,6 +67,9 @@ else
     protected override async Task OnInitializedAsync(){
         transactions = await TransactionsClientInjected.GetTransactionsAsync();
     }
+
+
+    private static string TransactionUrl(int id) => $"/edittransaction/{id}";
 
 }
     

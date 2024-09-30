@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ExpiredFood.Frontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c0e4c4522ac89fa96ebaad683054819d6076c92")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+252773a24cdc5b8aaa1939e93b133dbff65d5df8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ExpiredFood.Frontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ExpiredFood.Frontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

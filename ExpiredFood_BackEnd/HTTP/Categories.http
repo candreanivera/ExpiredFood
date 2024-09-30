@@ -10,15 +10,15 @@ POST http://localhost:5084/categories
 Content-Type: application/json
 
 {
-    "Name": "Chocolates"
+    "Name": "Chocolatitos"
 }
 
 ###
-PUT http://localhost:5084/categories/6
+PUT http://localhost:5084/categories/7
 Content-Type: application/json
 
 {
-    "Name": "Vegetales Congelados"
+    "Name": "Chocolatitos"
 }
 
 ###

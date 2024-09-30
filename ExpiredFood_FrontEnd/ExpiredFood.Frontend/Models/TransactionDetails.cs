@@ -1,5 +1,4 @@
 using System;
-
 namespace ExpiredFood.Frontend.Models;
 
 public class TransactionDetails
@@ -10,6 +9,6 @@ public class TransactionDetails
     public DateTime Due_Date { get; set; }    
     public int CategoryId { get; set; }
     public string ?CategoryName { get; set; }
-    public DateTime Date { get; set; }
+    public DateTime Timestamp { get; set; }
     public string ?Observations { get; set; }
 }

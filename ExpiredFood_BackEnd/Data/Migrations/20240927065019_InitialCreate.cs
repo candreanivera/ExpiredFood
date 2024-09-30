@@ -115,7 +115,11 @@ namespace ExpiredFood_BackEnd.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Address", "Email", "LastName", "Name", "Phone" },
-                values: new object[] { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina", 211234567 });
+                values: new object[,]
+                {
+                    { 1, "Que te importa 23, Auckland", "queteimporta@example.com", "Andreani", "Cristina", 211234567 },
+                    { 2, "Que te importa 23, Auckland", "queteimporta@example.com", "Graham", "Mathew", 211234567 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Foods_CategoryId",
