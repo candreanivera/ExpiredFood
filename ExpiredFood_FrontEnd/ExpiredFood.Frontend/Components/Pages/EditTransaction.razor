@@ -1,5 +1,6 @@
 ﻿@page "/edittransaction"
 @page "/edittransaction/{IdInput:int}"
+@rendermode InteractiveServer
 
 
 @inject NavigationManager NavigationManager
@@ -24,15 +25,15 @@ else
 
             <div class="mb-3">
                 <label for="user" class="form-label">User:</label>
-                <InputSelect id="user" @bind-Value="transactioncreate.UserId" class="form-select">
+                <InputSelect id="user" @bind-Value="transactioncreate.UserID" class="form-select">
                     <option value="">Select a user</option>
                     @foreach (var user in users)
                     {
-                        <option value="@user.UserId">@user.Name</option>
+                        <option value="@user.UserID">@user.Name</option>
                     }
                 </InputSelect>
                 
-                <ValidationMessage For="@(() => transactioncreate.UserId)" />
+                <ValidationMessage For="@(() => transactioncreate.UserID)" />
             </div>
 
             <div class="mb-3">
@@ -79,10 +80,6 @@ else
 
     protected override async Task OnParametersSetAsync(){
       if (transactioncreate is not null){
-        Console.WriteLine(transactioncreate.UserId);
-        Console.WriteLine(transactioncreate.Id);
-        Console.WriteLine(transactioncreate.CategoryId);
-        Console.WriteLine(transactioncreate.Due_Date);
         return;
       }
       if (IdInput is not null){ 

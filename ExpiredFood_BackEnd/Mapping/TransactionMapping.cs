@@ -21,7 +21,7 @@ public static class TransactionMapping
 
     public static Transaction ToEntity(this CreateTransactionDTO newTransactionDTO){
         return new Transaction(){
-           UserId = newTransactionDTO.UserID,
+           UserId = newTransactionDTO.UserId,
            Due_Date = newTransactionDTO.Due_date,
            CategoryId = newTransactionDTO.CategoryId,
            Date = newTransactionDTO.Timestamp,

@@ -3,8 +3,9 @@ namespace ExpiredFood.DTO;
 
 public record class UpdateTransactionDTO
 (
-    [Required] int UserID,
-    int FoodId,
-    DateTime Timestamp,
-    [StringLength(50)] string Observations
+    [Required] int UserId,
+    int CategoryId,
+    DateTime Due_Date,
+    DateTime Date,
+    string Observations
 );

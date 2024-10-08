@@ -4,7 +4,7 @@ namespace ExpiredFood.Frontend.Models;
 
 public class User
 {
-    public int UserId { get; set; }
+    public int UserID { get; set; }
     public string? Name { get; set; }
     public string? last_Name { get; set; }
     public string? address { get; set; }

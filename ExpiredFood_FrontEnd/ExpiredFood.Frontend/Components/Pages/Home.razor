@@ -48,10 +48,11 @@ else
                             </a>
                             <button class="btn btn-danger" 
                                     data-bs-toggle="modal" 
-                                    data-bs-target="">
+                                    data-bs-target="@GetDeleteModalId(transaction)">
                                     <i class="bi bi-x-lg"></i>
                             </button>
                         </div>
+                        <DeleteTransaction transactiondetails="@transaction"/> 
                     </td>
                 </tr>
                 } 
@@ -68,8 +69,12 @@ else
         transactions = await TransactionsClientInjected.GetTransactionsAsync();
     }
 
-
     private static string TransactionUrl(int id) => $"/edittransaction/{id}";
+
+    private string GetDeleteModalId(TransactionDetails transaction)
+        {
+            return $"#{DeleteTransaction.GetModalId(transaction)}";
+        }
 
 }
     

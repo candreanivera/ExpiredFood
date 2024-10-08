@@ -3,7 +3,7 @@ GET http://localhost:5084/transactions
 ###
 
 #Get an specific transactions
-GET http://localhost:5084/transactions/1
+GET http://localhost:5084/transactions/14
 ###
 
 //Insert transactions
@@ -12,23 +12,24 @@ Content-Type: application/json
 
 {
     "UserID": 1,
-    "Due_date": "2024-09-18",
+    "Due_date": "2026-12-26",
     "CategoryId": 1,
-    "Timestamp": "2024-09-16",
-    "Observations": "Paltas"
+    "Timestamp": "2024-12-26",
+    "Observations": "Paltitas"
 }
 
 ###
-PUT http://localhost:5084/transactions/1
+PUT http://localhost:5084/transactions/17
 Content-Type: application/json
 
 {
-    "Due_date": "18-08-2024",
-    "FoodId": 1, 
-    "Timestamp": "2024-08-17",
-    "Observations": "Nuevas observaciones"
+    "UserID": 2,
+    "CategoryId": 4,
+    "Due_Date": "2027-12-26T00:00:00",
+    "Date": "2024-12-10T00:00:00",
+    "Observations": "Hola Mat"
 }
 
 ###
-DELETE http://localhost:5084/transactions/1
+DELETE http://localhost:5084/transactions/18
 Content-Type: application/json

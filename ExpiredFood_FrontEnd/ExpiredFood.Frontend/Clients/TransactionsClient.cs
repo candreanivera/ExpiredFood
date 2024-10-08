@@ -18,4 +18,7 @@ public class TransactionsClient(HttpClient httpClient)
 
     public async Task AddTransactionAsync(TransactionCreate newtransaction)
     => await httpClient.PostAsJsonAsync("transactions", newtransaction);
+
+    public async Task DeleteTransactionAsync(int id)
+   => await httpClient.DeleteAsync($"transactions/{id}");
 }
