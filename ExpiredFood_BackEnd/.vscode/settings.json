@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/7f5f375f-da11-4f2e-969c-71343c540fc8/resourceGroups/DefaultResourceGroup-EAU/providers/Microsoft.Web/sites/ExpiredFood",
+  "appService.deploySubpath": "bin\\Publish"
+}

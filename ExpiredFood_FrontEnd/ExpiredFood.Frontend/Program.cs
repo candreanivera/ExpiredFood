@@ -7,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents();
 
-var ExpiredFoodApiUrl = "http://localhost:5084";
+//var ExpiredFoodApiUrl = "http://localhost:5084";
+var ExpiredFoodApiUrl = builder.Configuration["ExpiredFoodApiUrl"] ?? 
+    throw new Exception("ExpiredFoodApiUrl is not set");
 
 builder.Services.AddHttpClient<TransactionsClient>(
     client => client.BaseAddress = new Uri(ExpiredFoodApiUrl));

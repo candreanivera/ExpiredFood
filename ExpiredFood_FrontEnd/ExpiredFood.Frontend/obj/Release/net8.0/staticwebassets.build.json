@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "OkFhleH+u5adfj0RzDvmittuPxzA4h6NYFRIVhR0P0I=",
+  "Source": "ExpiredFood.Frontend",
+  "BasePath": "_content/ExpiredFood.Frontend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ExpiredFood.Frontend\\wwwroot",
+      "Source": "ExpiredFood.Frontend",
+      "ContentRoot": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\wwwroot\\",
+      "BasePath": "_content/ExpiredFood.Frontend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\bundle\\ExpiredFood.Frontend.styles.css",
+      "SourceId": "ExpiredFood.Frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/ExpiredFood.Frontend",
+      "RelativePath": "ExpiredFood.Frontend.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\bundle\\ExpiredFood.Frontend.styles.css"
+    },
+    {
+      "Identity": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\ExpiredFood.Frontend.bundle.scp.css",
+      "SourceId": "ExpiredFood.Frontend",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/ExpiredFood.Frontend",
+      "RelativePath": "ExpiredFood.Frontend.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\ExpiredFood.Frontend.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\wwwroot\\app.css",
+      "SourceId": "ExpiredFood.Frontend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Expired_Food\\ExpiredFood_FrontEnd\\ExpiredFood.Frontend\\wwwroot\\",
+      "BasePath": "_content/ExpiredFood.Frontend",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ builder.Services.AddSqlite<ExpiredFoodContext>(connectionString);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Weeeena po!");
 app.MapCategoriesEndpoints();
 app.MapTransactionsEndpoints();
 app.MapFoodsEndpoints();
