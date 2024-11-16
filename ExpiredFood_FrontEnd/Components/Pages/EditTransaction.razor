@@ -1,0 +1,117 @@
+﻿@page "/edittransaction"
+@page "/edittransaction/{IdInput:int}"
+@rendermode InteractiveServer
+
+
+@inject NavigationManager NavigationManager
+@inject TransactionsClient TransactionsClientInjected
+@inject UsersClient usersClientInjected
+@inject CategoriesClient categoriesClientInjected
+
+
+<PageTitle>@title</PageTitle>
+<h3>@title</h3>
+
+@if(users is null || categories is null || transactioncreate is null){
+    <em>Loading Data...</em>
+}
+else 
+{
+    <div class="roow">
+        <div class="col-md-4">
+            <EditForm Model="@transactioncreate" FormName="edittransaction" OnValidSubmit="HandleSubmitAsync" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label for="user" class="form-label">User:</label>
+                <InputSelect id="user" @bind-Value="transactioncreate.UserID" class="form-select">
+                    <option value="">Select a user</option>
+                    @foreach (var user in users)
+                    {
+                        <option value="@user.UserID">@user.Name</option>
+                    }
+                </InputSelect>
+                
+                <ValidationMessage For="@(() => transactioncreate.UserID)" />
+            </div>
+
+            <div class="mb-3">
+                <label for="duedate" class="form-label">Due Date:</label>
+                <InputDate id="duedate" @bind-Value="transactioncreate.Due_Date" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="categories" class="form-label">Categories:</label>
+                <InputSelect id="categories" @bind-Value="transactioncreate.CategoryId" class="form-select">
+                    <option value="">Select a Category</option>
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.CategoryId">@category.Name</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => transactioncreate.CategoryId"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="observations" class="form-label">Observations:</label>
+                <InputText id="observations" @bind-Value="transactioncreate.Observations" class="form-control"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a role="button" class="btn btn-secondary" href="/">Cancel</a>
+            </EditForm>
+
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public int? IdInput {get; set;}
+
+    [SupplyParameterFromForm]
+    private TransactionCreate? transactioncreate {get; set;}  
+    private User[]? users;
+    private Category[]? categories;
+
+    private string title = string.Empty;
+
+    protected override async Task OnParametersSetAsync(){
+      if (transactioncreate is not null){
+        return;
+      }
+      if (IdInput is not null){ 
+        transactioncreate = await TransactionsClientInjected.GetTransactionAsync(IdInput.Value);
+        Console.WriteLine(IdInput.Value);
+        Console.WriteLine(transactioncreate.Observations);
+        title = $"Edit {transactioncreate.Observations}";
+      }
+      else{
+        transactioncreate = new(){
+        Observations = string.Empty,
+        Due_Date = DateTime.UtcNow
+        };
+        title = "New Transaction";
+      }
+    }
+
+    protected override async Task OnInitializedAsync(){
+        users = await usersClientInjected.GetUsersAsync();
+        categories = await categoriesClientInjected.GetCategoriesAsync();
+    }
+
+    private async Task HandleSubmitAsync(){
+        ArgumentNullException.ThrowIfNull(transactioncreate);
+        
+        if(IdInput is null){
+            await TransactionsClientInjected.AddTransactionAsync(transactioncreate); 
+            }
+        else{
+            transactioncreate.Id = IdInput.Value;
+            await TransactionsClientInjected.UpdateTransactionAsync(transactioncreate);
+        }
+            NavigationManager.NavigateTo("/");
+    }
+}

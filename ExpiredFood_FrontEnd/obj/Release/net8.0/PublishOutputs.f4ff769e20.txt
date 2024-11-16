@@ -1,0 +1,7 @@
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\ExpiredFood.Frontend.exe
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\appsettings.Development.json
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\appsettings.json
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\ExpiredFood.Frontend.dll
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\ExpiredFood.Frontend.deps.json
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\ExpiredFood.Frontend.runtimeconfig.json
+C:\Expired_Food\ExpiredFood_FrontEnd\bin\Publish\ExpiredFood.Frontend.pdb

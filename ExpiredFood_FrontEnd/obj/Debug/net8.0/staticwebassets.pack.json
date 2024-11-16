@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Expired_Food_SQL\\ExpiredFood_FrontEnd\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ExpiredFood.Frontend.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ExpiredFood.Frontend.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Expired_Food_SQL\\ExpiredFood_FrontEnd\\wwwroot\\Pictures\\refribebe.jpg",
+      "PackagePath": "staticwebassets\\Pictures\\refribebe.jpg"
+    },
+    {
+      "Id": "C:\\Expired_Food_SQL\\ExpiredFood_FrontEnd\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ExpiredFood.Frontend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ExpiredFood.Frontend.props",
+      "PackagePath": "build\\ExpiredFood.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ExpiredFood.Frontend.props",
+      "PackagePath": "buildMultiTargeting\\ExpiredFood.Frontend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ExpiredFood.Frontend.props",
+      "PackagePath": "buildTransitive\\ExpiredFood.Frontend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,35 @@
+#Get the list of transactions
+GET http://localhost:5084/transactions
+###
+
+#Get an specific transactions
+GET http://localhost:5084/transactions/1003
+###
+
+//Insert transactions
+POST http://localhost:5084/transactions
+Content-Type: application/json
+
+{
+    "UserID": 1,
+    "Due_date": "2026-12-26",
+    "CategoryId": 1,
+    "Timestamp": "2024-12-26",
+    "Observations": "Paltitas"
+}
+
+###
+PUT http://localhost:5084/transactions/17
+Content-Type: application/json
+
+{
+    "UserID": 2,
+    "CategoryId": 4,
+    "Due_Date": "2027-12-26T00:00:00",
+    "Date": "2024-12-10T00:00:00",
+    "Observations": "Hola Mat"
+}
+
+###
+DELETE http://localhost:5084/transactions/1003
+Content-Type: application/json

@@ -1,0 +1,34 @@
+#Get the list of categories
+GET http://localhost:5084/Users
+###
+
+#Get an specific category
+GET http://localhost:5084/Users/2
+###
+
+POST http://localhost:5084/Users
+Content-Type: application/json
+
+{
+    "Name": "Mathew",
+    "Last_Name": "Graham",
+    "Address": "124 Queteimporta Street",
+    "Email": "mathew@queteimporta.com",
+    "Phone": 666665123
+}
+
+###
+PUT http://localhost:5084/Users/3
+Content-Type: application/json
+
+{
+    "Name": "Cristina",
+    "Last_Name": "Andreani",
+    "Address": "Que te importa 45",
+    "Email": "cristina@queteimporta.com",
+    "Phone": 666666
+}
+
+###
+DELETE http://localhost:5084/Users/3
+Content-Type: application/json

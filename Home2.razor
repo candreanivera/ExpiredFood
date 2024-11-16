@@ -1,0 +1,74 @@
+﻿@page "/"
+@* @using Models
+@using Clients *@
+@inject TransactionsClient TransactionsClientInjected
+@attribute [StreamRendering]
+
+<PageTitle>Transactions</PageTitle>
+
+<h1>Transactions List</h1>
+
+<div class="mt-2 mb-3">
+    <a class="btn btn-primary" role="button" href="/editTransaction">New Transaction</a>
+</div>
+
+@if(transactions is null){
+    <p>Loading Transactions...</p>
+}
+else
+{
+    <table class="table table-striped" table-bordered table-hover>
+        <thead class="table-dark">
+            <th>Transaction</th>
+        </thead>
+        <tbody>
+        
+               var index = 0;
+            
+             @foreach (var transaction in transactions){
+                    <td>Nro Transaction<br>
+                        @transaction.TrxId<br>
+                        @transaction.UserName<br>
+                        @transaction.Due_Date.ToString("dd-MM-yyyy")<br>
+                        @transaction.CategoryName<br>
+                        @transaction.Timestamp.ToString("dd-MM-yyyy")<br>
+                        @transaction.Observations<br>
+                        <div class="d-flex">
+                            <a class="btn btn-primary me-2" role="button" href="@TransactionUrl(transaction.TrxId)">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <button class="btn btn-danger" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="@GetDeleteModalId(transaction)">
+                                    <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <DeleteTransaction transactiondetails="@transaction"/> 
+                    </td>
+                        index++; 
+                        if (index % 3 == 0)
+                        <span>Hola</span>
+                    
+            } 
+        </tbody>
+    </table>
+}
+
+@code{
+    //List of transactions
+    private TransactionDetails[]? transactions;
+
+    //Populating class client
+    protected override async Task OnInitializedAsync(){
+        transactions = await TransactionsClientInjected.GetTransactionsAsync();
+    }
+
+    private static string TransactionUrl(int id) => $"/edittransaction/{id}";
+
+    private string GetDeleteModalId(TransactionDetails transaction)
+        {
+            return $"#{DeleteTransaction.GetModalId(transaction)}";
+        }
+
+}
+    
